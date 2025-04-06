@@ -1,6 +1,7 @@
 from stats import get_word_count
 from stats import count_characters
 from stats import sort_dict
+import sys
 
 def get_book_text(path):
     try:
@@ -9,22 +10,20 @@ def get_book_text(path):
     except FileNotFoundError:
         print(f"Error: The file at {path} was not found.")
         return ""
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        return ""
 
 
 def main():
-    try:
-        book_path = "books/frankenstein.txt"
-        book_text = get_book_text(book_path)
-    except:
-        print("Failed to load book content.")
+
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+    book_path = sys.argv[1]
+    book_text = get_book_text(book_path)
 
     if not book_text:
-        print("Book content is empty.")
-        return
-
+        print("Failed to load book content.")
+        sys.exit(1)
 
     print("============ BOOKBOT ============")
     print(f"Analyzing book found at {book_path}...")
