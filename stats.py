@@ -14,3 +14,9 @@ def count_characters(text):
             else:
                 char_counts[char] = 1
     return char_counts
+
+
+def sort_dict(d):
+    sorted_items = list(d.items())
+    sorted_items = sorted(sorted_items, key=lambda item: item[1], reverse=True)
+    return dict(sorted_items)

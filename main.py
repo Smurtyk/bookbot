@@ -1,5 +1,6 @@
 from stats import get_word_count
 from stats import count_characters
+from stats import sort_dict
 
 def get_book_text(path):
     try:
@@ -24,8 +25,17 @@ def main():
         print("Book content is empty.")
         return
 
-    num_words = get_word_count(book_text)
-    print(f"{num_words} words found in the document.")
-    print(count_characters(book_text))
+
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {book_path}...")
+    print("----------- Word Count ----------")
+    word_count = get_word_count(book_text)
+    print(f"Found {word_count} total words")
+    print("--------- Character Count -------")
+    char_counts = count_characters(book_text)
+    sorted = sort_dict(char_counts)
+    for char in sorted:
+        print(f"{char}: {char_counts[char]}")
+    print("--------- Character Count -------")
     
 main()
